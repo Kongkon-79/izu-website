@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 type AuthCardProps = {
   title: string;
@@ -23,14 +24,20 @@ export function AuthCard({
         className
       )}
     >
-      <Image
-        src="/images/workyapa-logo.png"
-        alt="Workyapa"
-        width={185}
-        height={60}
-        className="mx-auto h-auto w-[185px]"
-        priority
-      />
+      <Link
+        href="/"
+        aria-label="Go to Workyapa home page"
+        className="mx-auto block w-fit rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2875bb]"
+      >
+        <Image
+          src="/images/workyapa-logo.png"
+          alt="Workyapa"
+          width={185}
+          height={60}
+          className="mx-auto h-auto w-[185px]"
+          priority
+        />
+      </Link>
       <div className="mt-5">
         <h1 className="text-2xl font-extrabold tracking-[-0.025em] text-[#2875bb] sm:text-[28px]">
           {title}
