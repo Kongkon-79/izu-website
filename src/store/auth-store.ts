@@ -13,6 +13,8 @@ export type AuthUser = {
 
 type AuthState = {
   user: AuthUser | null;
+  hasHydrated: boolean;
+  setHasHydrated: () => void;
   setAuth: (user: AuthUser) => void;
   clearAuth: () => void;
 };
@@ -21,12 +23,15 @@ export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
       user: null,
+      hasHydrated: false,
+      setHasHydrated: () => set({ hasHydrated: true }),
       setAuth: (user) => set({ user }),
       clearAuth: () => set({ user: null }),
     }),
     {
       name: "izu-auth",
       storage: createJSONStorage(() => localStorage),
+      onRehydrateStorage: () => (state) => state?.setHasHydrated(),
     }
   )
 );
